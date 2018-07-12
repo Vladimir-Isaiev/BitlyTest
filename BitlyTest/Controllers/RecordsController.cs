@@ -24,18 +24,10 @@ namespace BitlyTest.Controllers
 
         // GET api/values/5
         [HttpGet]
-        public string Get(string fullRecord)
+        public IActionResult Get(string fullRecord)
         {
             //string s = HttpContext.Request.QueryString.ToString().Remove(0, 12);
-            return repo.GetShortRecord(fullRecord);
-        }
-
-
-        [HttpPost]
-        public string Post([FromBody] string fullRecord)
-        {
-            string s = HttpContext.Request.QueryString.ToString();
-            return fullRecord;
+            return Json( repo.GetShortRecord(fullRecord));
         }       
     }
 }

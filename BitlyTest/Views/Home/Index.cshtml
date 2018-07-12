@@ -64,39 +64,33 @@
             $('#apigett').click(function () {
 
                 var fr = $('#FullRecord').val();
-                
+
                 if (!fr) {
                     alert("Paste a link");
                     return;
                 }
 
-                $.ajax({
-                    type: "Get",
+                //$.ajax({
+                //    type: "Get",
+                //    url: "/api/records/",
+                //    data: { fullRecord: fr },
+                //    success: function (data) {
+                //        alert(data);
+                //    },
+                //    error: function (error) {
+                //        alert('Failed');
+                //    }
+                //});
+
+                $.getJSON({
                     url: "/api/records/",
                     data: { fullRecord: fr },
                     success: function (data) {
                         alert(data);
-                    },
-                    error: function (error) {
-                        alert('Failed');
                     }
                 });
                
             });
         });
-
-
-           //$("#FullRecord")
-           //    .keyup(function () {
-           //        var value = $(this).val();
-           //        full = value
-           //        alert(value);
-           //    })
-           //    .keyup();
-
-
-
-
-
     </script>
 }
