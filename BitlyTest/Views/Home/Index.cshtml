@@ -1,0 +1,102 @@
+﻿
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<h4>Record</h4>
+<hr />
+<div>
+    <div><label>Full URL</label></div>
+    <div><input id="FullRecord" /></div>
+</div>
+
+<div>
+    <button id="gett">Get</button>
+</div>
+
+<div>
+    <button id="apigett">Api Get</button>
+</div>
+
+<div>
+    <div><label>Short URL</label></div>
+    <div><input id="shortRecord" /></div>
+</div>
+
+
+
+
+
+
+@section Scripts {
+    <script type="text/javascript">
+        var full;
+
+
+        $(document).ready(function () {
+
+            $('#gett').click(function () {
+
+                var fr = $('#FullRecord').val();
+
+                if (!fr) {
+                    alert("Paste a link");
+                    return;
+                }
+
+                $.ajax({
+                    type: "Get",
+                    url: "/home/get/",
+                    data: { fullRecord: fr },
+                    success: function (data) {
+                        $('#shortRecord').val(data);
+                    },
+                    error: function (error) {
+                        alert('Failed');
+                    }
+                });
+            });
+
+
+            $('#apigett').click(function () {
+
+                var fr = $('#FullRecord').val();
+                
+                if (!fr) {
+                    alert("Paste a link");
+                    return;
+                }
+
+                $.ajax({
+                    type: "Get",
+                    url: "/api/records/",
+                    data: { fullRecord: fr },
+                    success: function (data) {
+                        alert(data);
+                    },
+                    error: function (error) {
+                        alert('Failed');
+                    }
+                });
+               
+            });
+        });
+
+
+           //$("#FullRecord")
+           //    .keyup(function () {
+           //        var value = $(this).val();
+           //        full = value
+           //        alert(value);
+           //    })
+           //    .keyup();
+
+
+
+
+
+    </script>
+}
